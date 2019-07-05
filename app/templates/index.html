@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Community Events Board</title>
+    </head>
+    <body>
+      <h1>Community Events Board</h1>
+      <div class="event-list">
+        <ul>
+          {% for event in events %}
+            <li>{{ event.event }} - {{ event.date }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <form method="post" action="/events/new">
+    <label for="event_name">Event Name:</label>
+    <input type="text" name="event_name" value="">
+    <label for="event_date">Date:</label>
+    <input type="date" name="event_date" value="">
+    <label for="name">Name:</label>
+    <input type="name" name="user_name" value="">
+    <input type="submit" value="Submit">
+</form>
+
+<h2>Log in</h2>
+<div>
+    <form action="/login" method="POST">
+        <label for="name">Name</label>
+        <input type="text" name="name">
+        <label for="password">Password</label>
+        <input type="password" name="password">
+        <input type="submit" value="Log In">
+    </form>
+    <p>No account? <a href="/signup">Sign up.</a></p>
+</div>
+    </body>
+</html>

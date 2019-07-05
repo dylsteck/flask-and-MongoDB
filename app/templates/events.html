@@ -1,0 +1,6 @@
+<div>
+	<ul>
+		{% for event in events %}
+		<a href="/events/{{event._id}}"><li>{{event.event}} - {{event.date}}</li></a>
+		{% endfor %}
+</div>
