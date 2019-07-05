@@ -62,19 +62,13 @@ def event(eventID):
 
 @app.route('/signup', methods=['GET','POST'])
 def signup():
-	if request.method == 'POST':
-		users = mongo.db.users
-		existing_user = users.find_one({'name': request.form['name']})
-
-		if existing_user is None:
-			users.insert({'name': request.form['name'], 'password': request.form['password']})
-			session['username'] = request.form['name']
-			return redirect(url_for('index'))
-
-		# if it gets to this return, then the other if(that means everything went normally) is already over(didn't go normally)
-		return 'That username already exists! Try logging in.'
-
-	return render_template('signup.html')
+    if request.method == 'POST':
+        users = mongo.db.users
+        existing_user = users.find_one({'name': request.form['username']})
+        if(existing_user is None):
+            users.insert({'name': request.form['username'], 'password': request.form['password']})
+            return redirect(url_for('index'))
+    return render_template('signup.html')
 
 @app.route('/login', methods=['POST'])
 def login():
